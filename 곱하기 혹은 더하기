@@ -1,0 +1,13 @@
+S = input()
+result = int(S[0]) 
+# result = 0으로 시작해도 가능.
+
+for i in range(1, len(S)): 
+# 인덱싱 통해 숫자를 선택.
+    num = int(S[i])
+    if result <= 1 or num <= 1:
+        result += num
+    else:
+        result *= num 
+
+print(result)
