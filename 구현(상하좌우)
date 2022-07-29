@@ -1,0 +1,21 @@
+# 최종적으로 도착할 지점의 좌표 출력. 단, N * N 크기의 정사각형 공간을 벗어나는 움직임은 무시됨. 시작 좌표는 항상 (1, 1).
+
+N = int(input())
+A = input().split()
+directions = ["L", "R", "U", "D"]
+
+dx = [0, 0, -1, 1]
+dy = [-1, 1, 0, 0]
+
+x, y = 1, 1
+
+for a in A:
+    for i in range(0, len(directions)):
+        if a == directions[i]:
+            nx = x + dx[i]
+            ny = y + dy[i]
+    if nx < 1 or ny < 1 or nx > N or ny > N:
+        continue
+    x, y = nx, ny
+
+print(x, y)
