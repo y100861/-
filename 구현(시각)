@@ -1,0 +1,15 @@
+# 00시 00분 00초 ~ N시 59분 59초까지의 모든 시각 중에서 3이 하나라도 포함되는 모든 경우의 수를 구하라.
+
+N = int(input())
+time = 0
+
+cnt = 0
+
+for n in range(0, N + 1):
+    for m in range(0, 60):
+        for s in range(0, 60):
+            time = n * 10000 + m * 100 + s    =>    str(n) + str(m) + str(s)
+            if "3" in str(time):
+                cnt += 1   
+
+print(cnt)
