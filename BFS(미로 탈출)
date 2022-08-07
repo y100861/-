@@ -1,0 +1,33 @@
+# N * M의 직사각형 형태의 미로에서 현재 위치 (1, 1)부터 미로 출구 (N, M)까지 탈출하기 위해 움직여야 하는 최소 칸의 개수를 구하시오. 
+
+from collections import deque
+
+N, M = map(int, input().split())
+graph = []
+
+for _ in range(N):
+    graph.append(list(map(int, input().split())))
+
+# 상, 하, 좌, 우
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+def bfs(x, y):
+    queue = deque()
+    queue.append((x, y))
+    while queue:
+        x, y = queue.popleft()  ->  # queue의 왼쪽부터 제거. # 첫 번째 시작 위치 (0, 0)큐는 다시 방문할 수 있도록 되어있지만 어차피 graph[0][1]이 2가 되어있으므로
+                                                           (if graph[nx][ny] == 1 이 조건문에 충족 X) 모든 조건문을 무시하고 다음 큐(2, 1)로 넘어감.
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if nx <= -1 or nx >= N or ny <= -1 or ny >= M:
+                continue
+            if graph[nx][ny] == 0:
+                continue
+            if graph[nx][ny] == 1:
+                graph[nx][ny] = graph[x][y] + 1  ->  # 다음 위치로 갈 때마다 그 위치를 전 위치 + 1로 처리.
+                queue.append((nx, ny))
+    return graph[N - 1][M - 1]  ->  # 출구 위치에 도착했을 때 종료 및 누적 합 출력.
+
+print(bfs(0, 0))
