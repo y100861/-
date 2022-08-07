@@ -16,8 +16,8 @@ visited = [False] * 9
 
 def BFS(graph, start, visited):
     queue = deque([start])
-    visited[start] = True
-    while queue:
+    visited[start] = True -> # 시작 지점을 방문 처리.
+    while queue: -> # 큐에 숫자가 있을 동안
         v = queue.popleft()
         print(v, end = " ")
         for i in graph[v]:
