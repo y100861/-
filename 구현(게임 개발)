@@ -15,7 +15,7 @@ d = [[0] * M for _ in range(N)]
 # 현재 위치를 방문한 위치로 처리.
 d[x][y] = 1
 
-# 맵 정보 입력하기.
+# 맵 정보 입력하기.(옥지, 바다)
 array = []
 for i in range(N):
     array.append(list(map(int, input().split())))
