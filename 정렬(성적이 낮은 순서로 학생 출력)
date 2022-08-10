@@ -1,0 +1,10 @@
+N = int(input())
+name_scores = []
+
+for _ in range(N):
+    name_score = input().split()
+    name_scores.append((name_score[0], int(name_score[1])))
+
+array = sorted(name_scores, key = lambda score: score[1])
+
+print(array)
