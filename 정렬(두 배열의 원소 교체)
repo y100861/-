@@ -1,0 +1,13 @@
+# 배열 A, B가 있는데 배열 A의 원소와 배열 B의 원소를 교체하면서 배열 A의 모든 원소의 합이 최대가 되도록 하시오. 단, 교체는 K번만 할 수 있다.
+
+N, K = map(int, input().split())
+A = sorted(list(map(int, input().split())))
+B = sorted(list(map(int, input().split())), reverse = True)
+
+for i in range(K):
+    if A[i] < B[i]:
+        A[i], B[i] = B[i], A[i]
+    else:
+        break
+
+print(sum(A))
