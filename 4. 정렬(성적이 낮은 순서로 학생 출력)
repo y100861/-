@@ -7,4 +7,5 @@ for _ in range(N):
 
 array = sorted(name_scores, key = lambda score: score[1])
 
-print(array)
+for name, score in array:
+    print(name, end = " ")
