@@ -29,6 +29,7 @@ for client in clients:
         print("no", end = " ")
     else:
         print("yes", end = " ")
+        
       
 #2
 from bisect import *
