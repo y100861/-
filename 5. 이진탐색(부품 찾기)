@@ -1,0 +1,50 @@
+# 매장에는 부품이 N개 있다. 어느 날 손님이 M개 종류의 부품을 대량으로 구매하겠다며 당일 날 견적서를 요청했다. 손님이 문의한 부품 M개 종류를 모두 확인해서 견적서를 작성해야 한다.
+  이때 가게 안에 부품이 모두 있는지 확인하는 프로그램을 작성해보자. 부품이 있으면 yes를, 없으면 no를 출력한다.
+  ex) 5
+      8 3 7 9 2
+      3
+      5 7 9
+      no yes yes
+
+#1 
+N = int(input())
+nums = sorted(list(map(int, input().split())))
+M = int(input())
+clients = sorted(list(map(int, input().split())))
+
+def binary_search(nums, target, start, end):
+    while start <= end:
+        mid = (start + end) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] > target:
+            end = mid - 1
+        else:
+            start = mid + 1
+    return None
+
+for client in clients:
+    result = binary_search(nums, client, 0, N - 1):
+    if result == None:
+        print("no", end = " ")
+    else:
+        print("yes", end = " ")
+      
+#2
+from bisect import *
+
+N = int(input())
+nums = sorted(list(map(int, input().split())))
+M = int(input())
+clients = sorted(list(map(int, input().split())))
+
+def cnt_client(nums, left_value, right_value):
+    right = bisect_right(nums, right_value)
+    left = bisect_left(nums, left_value)
+    return right - left
+
+for i in range(len(clients)):
+    if cnt_client(nums, clients[i], clients[i]) == 0:
+        print("no", end = " ")
+    else:
+        print("yes", end = " ")
