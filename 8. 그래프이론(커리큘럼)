@@ -1,0 +1,52 @@
+# 동빈이는 총 N개의 강의를 듣고자 한다. 모든 강의는 1번부터 N번까지의 번호를 가진다. 또한 동시에 여러 개의 강의를 들을 수 있다고 가정한다.
+  예를 들어, N = 3일 때, 3번 강의의 선수 강의로 1번과 2번 강의가 있고, 1번과 2번 강의는 선수 강의가 없다고 가정하자. 각 강의에 대하여 강의 시간은 다음과 같다.
+  ex) 1번 강의: 30시간 / 2번 강의: 20시간 / 3번 강의: 40시간
+      => 3번 강의를 수강하기까지의 최소 시간은 60시간이다.
+      5
+      10 -1
+      10 1 -1
+      4 1 -1
+      4 3 1 -1
+      3 3 -1
+      10
+      20
+      14
+      18
+      17
+
+
+from collections import *
+import copy 
+
+v = int(input())
+indegree = [0] * (v + 1)
+graph = [[] for _ in range(v + 1)]
+time = [0] * (v + 1)
+
+for i in range(1, v + 1):
+    data = list(map(int, input().split()))
+    time[i] = data[0]
+    for x in data[1 : -1]:
+        indegree[i] += 1
+        graph[x].append(i)
+
+def topology_sort():
+    q = deque()
+    result = copy.deepcopy(time) # time 리스트를 복사하여 result 리스트를 선언.
+
+    for i in range(1, v + 1):
+        if indegree[i] == 0:
+            q.append(i)
+    
+    while q:
+        now = q.popleft()
+        for i in graph[now]:
+            result[i] = max(result[i], result[now] + time[i]) # result 리스트 원소들을 time 리스트 원소들과 합하면서 변환해 나감.
+            indegree[i] -= 1
+            if indegree[i] == 0:
+                q.append(i)
+
+    for i in range(1, v + 1):
+        print(result[i])
+
+topology_sort()
