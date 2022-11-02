@@ -3,14 +3,16 @@ a = [1, 3, 5]
 b = [2, 4, 6, 8]
 
 result = [0] * (n + m)
-i = 0
-j = 0
+i = 0 # 리스트a 원소들에 대한 순서
+j = 0 # 리스트b 원소들에 대한 순서
 k = 0
 
 while i < n or j < m:
+    # 리스트a의 모든 원소가 처리되었거나, 리스트b의 원소가 더 작을 때
     if i >= n or (j < m and a[i] >= b[j]):
         result[k] = b[j]
         j += 1
+    # 리스트b의 모든 원소가 처리되었거나, 리스트a의 원소가 더 작을 때
     elif j >= m or (i < n and a[i] <= b[j]):
         result[k] = a[i]
         i += 1
